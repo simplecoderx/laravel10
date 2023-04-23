@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GitHubController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('posts.index');
     })->name('dashboard');
 });
 
@@ -33,10 +34,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/navi', function () {
-        return view('navi');
-    })->name('navi');
+    // Route::get('/password', function () {
+    //     return view('password.index');
+    // })->name('password');
+    Route::resource('posts',PostController::class);
 });
-
 Route::get('auth/github', [GitHubController::class, 'gitRedirect']);
 Route::get('auth/github/callback', [GitHubController::class, 'gitCallback']);

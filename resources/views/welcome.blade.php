@@ -20,7 +20,7 @@
     </head>
     <body class="antialiased">
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 selection:bg-red-500 selection:text-white">
-            <div class="logo sm:fixed sm:top-0 p-6 text-left">Trabaho</div>
+            <div class="logo sm:fixed sm:top-0 p-6 text-left">PassKeep</div>
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
                     @auth
@@ -45,10 +45,10 @@
            
             <div class="z-10">
                 <h1 class="text-6xl font-bold uppercase text-white">
-                    Trabaho<span class="text-black">Portal</span>
+                    Pass<span class="text-black">Keep</span>
                 </h1>
                 <p class="text-2xl text-gray-200 font-bold my-4">
-                    Build Your Future. Build Your Dream.
+                    Secure Accounts. Secure Future.
                 </p>
                 <div>
                     <a
