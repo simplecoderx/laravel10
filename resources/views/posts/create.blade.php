@@ -1,9 +1,9 @@
+<x-app-layout> 
 @extends('posts.layout')
-  
-@section('content')
+{{-- @section('content') --}}
 <div class="card mt-5">
         <div class="card-header">
-            <h2>Laravel 10 CRUD Example from scratch - NiceSnippets.com</h2>
+            <h2>Create New Password</h2>
         </div>
         <div class="card-body">
             <div class="row">
@@ -39,8 +39,8 @@
                          <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <strong>Account:</strong>
-                                    <input type="text" name="account" class="form-control" placeholder="Account">
+                                    <strong>Platform:</strong>
+                                    <input type="text" name="account" class="form-control" placeholder="Platform">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -64,4 +64,5 @@
             </div>
         </div>
     </div>
-@endsection
+{{-- @endsection --}}
+</x-app-layout> 

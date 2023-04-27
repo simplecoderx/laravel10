@@ -42,8 +42,8 @@
                          <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <strong>Account:</strong>
-                                    <input type="text" name="account" value="{{ $post->account }}" class="form-control" placeholder="Account">
+                                    <strong>Platform:</strong>
+                                    <input type="text" name="account" value="{{ $post->account }}" class="form-control" placeholder="Platform">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">

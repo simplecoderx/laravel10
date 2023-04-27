@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\PostHistory;
+use App\Http\Requests\PostRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -13,8 +15,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::latest()->paginate(5);
-        
-        return view('posts.index',compact('posts'))
+
+        return view('posts.index', compact('posts'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -34,18 +36,20 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $request->validate([
-            'account' => 'required',
-            'username' => 'required',
-            'password' => 'required',
-        ]);
-    
+        // $request->validate([
+        //     'account' => 'required',
+        //     'username' => 'required',
+        //     'password' => 'required',
+        // ]);
+
+        $validated = $request->validated();
+
         Post::create($request->all());
-     
+
         return redirect()->route('posts.index')
-                        ->with('success','Password created successfully.');
+            ->with('success', 'Password created successfully.');
     }
 
     /**
@@ -56,7 +60,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.show',compact('post'));
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -67,7 +71,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit',compact('post'));
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -77,19 +81,36 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        $request->validate([
-            'account' => 'required',
-            'username' => 'required',
-            'password' => 'required',
-        ]);
-    
+        $validated = $request->validated();
+
+        $previous_values = [
+            'account' => $post->account,
+            'username' => $post->username,
+            'password' => $post->password,
+        ];
+
         $post->update($request->all());
-    
+
+        $post_history = new PostHistory();
+        $post_history->fill($previous_values);
+        $post_history->post()->associate($post);
+        $post_history->changed_at = now();
+        $post_history->changed_by = auth()->id();
+        $post_history->save();
+
         return redirect()->route('posts.index')
-                        ->with('success','Password updated successfully');
+            ->with('success', 'Password updated successfully');
     }
+
+    public function history(Post $post)
+    {
+        $postHistory = PostHistory::where('post_id', $post->id)->orderBy('changed_at', 'desc')->get();
+    
+        return view('posts.history', compact('postHistory'));
+    }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -100,8 +121,8 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-    
+
         return redirect()->route('posts.index')
-                        ->with('success','Password deleted successfully');
+            ->with('success', 'Password deleted successfully');
     }
 }

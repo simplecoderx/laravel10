@@ -38,6 +38,8 @@ Route::middleware([
     //     return view('password.index');
     // })->name('password');
     Route::resource('posts',PostController::class);
+    Route::get('posts/{post}/history', [PostController::class, 'history'])->name('posts.history');
+    // Route::get('/posts/{post}/history', 'PostController@history')->name('posts.history');
 });
 Route::get('auth/github', [GitHubController::class, 'gitRedirect']);
 Route::get('auth/github/callback', [GitHubController::class, 'gitCallback']);

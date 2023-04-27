@@ -26,10 +26,10 @@
                     <table class="table table-bordered">
                         <tr>
                             <th>No</th>
-                            <th>Account</th>
+                            <th>Platform</th>
                             <th>Username</th>
                             <th>Password</th>
-                            <th width="280px">Action</th>
+                            <th width="350px">Action</th>
                         </tr>
                         @foreach ($posts as $post)
                         <tr>
@@ -43,6 +43,9 @@
                                     <a class="btn btn-info" href="{{ route('posts.show',$post->id) }}">Show</a>
                     
                                     <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Edit</a>
+                                    <a class="btn btn-primary" href="{{ route('posts.history',$post) }}">View History</a>
+                                    {{-- <a href="{{ route('posts.history', $post) }}">View History</a> --}}
+
                    
                                     @csrf
                                     @method('DELETE')

@@ -24,7 +24,7 @@ class GitHubController extends Controller
 
             if($searchUser){
                 Auth::login($searchUser);
-                return redirect('/dashboard');
+                return redirect('/posts');
             }else{
                 $gitUser = User::create([
                     'name' => $user->name,
@@ -35,7 +35,7 @@ class GitHubController extends Controller
                 ]);
 
                 Auth::login($gitUser);
-                return redirect('/dashboard');
+                return redirect('/posts');
             }
 
         } catch (Exception $e) {
