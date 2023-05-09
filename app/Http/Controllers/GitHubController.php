@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
+// use Auth;
 use Exception;
-use Socialite;
+// use Socialite;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class GitHubController extends Controller
