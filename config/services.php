@@ -37,4 +37,14 @@ return [
         'redirect' => 'http://127.0.0.1:8000/auth/github/callback',
     ],
 
+    'google' => [
+        'client_id' => '372632389003-r9843mkneql0gbt0mnbbcabtovu2m07a.apps.googleusercontent.com',
+        'client_secret' =>'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',
+        'redirect' => 'http://127.0.0.1:8000/auth/google/callback',
+    ],
+    'facebook' => [
+        'client_id' => '225457773608794',
+        'client_secret' => '5e1beb549e7f97332c06332abe99edea',
+        'redirect' => 'http://127.0.0.1:8000/auth/facebook/callback',
+    ],
 ];
